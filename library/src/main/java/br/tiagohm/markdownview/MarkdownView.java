@@ -393,7 +393,11 @@ public class MarkdownView extends WebView {
                 return Utils.getStringFromInputStream(is = connection.getInputStream());
             } catch (Exception e) {
                 e.printStackTrace();
-                return params[1];
+                if(params.length > 1 && params[1] != null)
+                {
+                    return params[1];
+                }
+                return "";
             } finally {
                 if (is != null) {
                     try {
