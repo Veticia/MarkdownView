@@ -284,6 +284,10 @@ public class MarkdownView extends WebView {
         new LoadMarkdownUrlTask().execute(url);
     }
 
+     public void loadMarkdownFromUrlFallback(String url, String fallback) {
+        new LoadMarkdownUrlTask().execute(url, fallback);
+    }
+    
     public static class NodeRendererFactoryImpl implements NodeRendererFactory {
         @Override
         public NodeRenderer create(DataHolder options) {
@@ -389,7 +393,7 @@ public class MarkdownView extends WebView {
                 return Utils.getStringFromInputStream(is = connection.getInputStream());
             } catch (Exception e) {
                 e.printStackTrace();
-                return "";
+                return params[1];
             } finally {
                 if (is != null) {
                     try {
